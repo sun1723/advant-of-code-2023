@@ -1,15 +1,13 @@
 import fs from "fs";
 var array = fs.readFileSync("./input/input02.txt").toString().split("\n");
 
-const mapping = {
-  red: 12,
-  green: 13,
-  blue: 14,
-};
-
 const regex = /Game\s*(\d+):/gi;
 const sum = array.reduce((acc, cur) => {
-  let flag = true;
+  let mapping = {
+    red: 0,
+    green: 0,
+    blue: 0,
+  };
   const id = parseInt(cur.split(":")[0].split(" ")[1]);
   const secondPart = cur.split(":")[1];
   const sets = secondPart.split(";");
@@ -19,14 +17,12 @@ const sum = array.reduce((acc, cur) => {
       const number = item.split(" ")[1];
       const color = item.split(" ")[2];
       if (parseInt(number) > mapping[color]) {
-        flag = false;
-        continue;
+        // update quantity per color
+        mapping[color] = parseInt(number);
       }
     }
   }
-  if (flag) {
-    acc += id;
-  }
+  acc += Object.values(mapping).reduce((acc, cur) => acc * cur, 1);
   return acc;
 }, 0);
 console.log(sum);
