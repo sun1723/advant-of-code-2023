@@ -4,7 +4,7 @@ var array = fs.readFileSync("./input/input03.txt").toString().split("\n");
 /**
  * check if symbols near by a number
  * 1. find number -- regex
- * 2. check surrounding , EG, number has startIdx: x1, endIdx: x2, currentRow: y => check range: horizontal (x1-1,y),(x2+1,y),(x1-1,y-1),(x-1,y+1),(x1...x2,y+1),(x1....x2,y-1);
+ * 2. check the surrounding index for a symbol, EG, symbol is at (x,y), its possibile number spot would be (x-1,y),(x+1,y),(x-1,y+1),(x,y+1),(x+1,y+1),(x-1,y-1),(x,y-1),(x+1,y)
  * 3. if any, add to sum, if not, do nothing
  */
 
