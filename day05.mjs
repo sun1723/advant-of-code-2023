@@ -32,6 +32,11 @@ for (const line of array) {
 console.log(map)
 const res=[]
 let nextSearch=-1
+
+// part 2: the process to check a specific seed:
+//      1): check if start seed is in range start=> start + num
+//      2); check how many seeds will be supported in range (seed, seed + num)
+//      3): ???
 for (const seed of seeds) {
     nextSearch=parseInt(seed);
     const location = Object.values(map).reduce ((acc, cur)=>{
@@ -52,6 +57,4 @@ for (const seed of seeds) {
     },nextSearch)
     res.push(location)
 }
-console.log(res)
-
 console.log(Math.min(...res))
